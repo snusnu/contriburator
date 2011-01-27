@@ -15,19 +15,19 @@ namespace :db do
 
   desc "Auto-upgrade the database"
   task :autoupgrade do
-    Testor::Persistence.setup(log_stream, log_level)
+    Contriburator::Persistence.setup(log_stream, log_level)
     DataMapper.auto_upgrade!
   end
 
   desc "Auto-migrate the database"
   task :automigrate do
-    Testor::Persistence.setup(log_stream, log_level)
+    Contriburator::Persistence.setup(log_stream, log_level)
     DataMapper.auto_migrate!
   end
 
   desc "Import the initially available jobs"
   task :seed do
-    Testor::Persistence.create(log_stream, log_level)
+    Contriburator::Persistence.create(log_stream, log_level)
 
     # create the initial seed data
   end
