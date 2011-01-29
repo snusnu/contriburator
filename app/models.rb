@@ -114,10 +114,11 @@ module Contriburator
         belongs_to :dependency, 'Project', :key => true
 
         is :localizable do
-
-        property :description, Text
-        property :created_at,  DateTime
-
+          
+          property :description, Text
+          property :created_at,  DateTime
+          
+        end
       end
 
       class Bounty
