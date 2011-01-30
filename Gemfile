@@ -14,10 +14,10 @@ gem 'dm-timestamps',     :git => 'http://github.com/datamapper/dm-timestamps.git
 gem 'dm-transactions',   :git => 'http://github.com/datamapper/dm-transactions.git'
 gem 'dm-types',          :git => 'http://github.com/datamapper/dm-types.git'
 gem 'dm-serializer',     :git => 'http://github.com/datamapper/dm-serializer.git'
-gem 'dm-is-remixable',   :path => '/Users/snusnu/projects/github/shared/datamapper/dm-is-remixable'#:git => 'http://github.com/datamapper/dm-is-remixable.git'
+gem 'dm-is-remixable',   :git => 'http://github.com/datamapper/dm-is-remixable.git'
 gem 'dm-aggregates',     :git => 'http://github.com/datamapper/dm-aggregates.git'
 
-gem 'dm-is-localizable', :path => '/Users/snusnu/projects/github/mine/dm-is-localizable'#:git => 'http://github.com/snusnu/dm-is-localizable.git'
+gem 'dm-is-localizable', :git => 'http://github.com/snusnu/dm-is-localizable.git'
 gem 'dm-zone-types',     :git => 'http://github.com/hassox/dm-zone-types.git'
 gem 'dm-accepts_nested_attributes', :git => 'http://github.com/snusnu/dm-accepts_nested_attributes.git'
 
