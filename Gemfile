@@ -4,6 +4,7 @@ gem 'i18n'
 gem 'json'
 gem 'sinatra'
 gem 'mustache'
+gem 'omniauth'
 
 gem 'dm-core',           :git => 'http://github.com/datamapper/dm-core.git'
 gem 'dm-mysql-adapter',  :git => 'http://github.com/datamapper/dm-mysql-adapter.git'
@@ -19,6 +20,8 @@ gem 'dm-aggregates',     :git => 'http://github.com/datamapper/dm-aggregates.git
 
 gem 'dm-is-localizable', :git => 'http://github.com/snusnu/dm-is-localizable.git'
 gem 'dm-zone-types',     :git => 'http://github.com/hassox/dm-zone-types.git'
+gem 'dm-taggings',       :git => 'http://github.com/solnic/dm-taggings.git'
+
 gem 'dm-accepts_nested_attributes', :git => 'http://github.com/snusnu/dm-accepts_nested_attributes.git'
 
 group :development do

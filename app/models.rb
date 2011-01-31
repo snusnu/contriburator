@@ -113,11 +113,10 @@ module Contriburator
         belongs_to :client,     'Project', :key => true
         belongs_to :dependency, 'Project', :key => true
 
+        property :created_at,  DateTime
+
         is :localizable do
-          
           property :description, Text
-          property :created_at,  DateTime
-          
         end
       end
 
@@ -144,9 +143,7 @@ module Contriburator
         property :stop_date,   DateTime, :required => true
 
         is :localizable do
-
           property :description,     Text, :required => true
-
         end
 
 
@@ -155,6 +152,8 @@ module Contriburator
       end # class Bounty
 
       include DataMapper::Resource
+
+      storage_names[:default] = 'projects'
 
       property :id,            Serial
 
@@ -168,9 +167,7 @@ module Contriburator
       property :created_at,    DateTime
 
       is :localizable do
-
         property :description,     Text
-
       end
 
 
@@ -247,7 +244,10 @@ module Contriburator
         storage_names[:default] = 'contribution_kinds'
 
         property :name,        String, :key => true
-        property :description, Text
+
+        is :localizable do
+          property :description, Text
+        end
 
       end
 
