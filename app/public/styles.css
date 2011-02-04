@@ -1,0 +1,328 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+	background-color: #dddddd;
+	color: #3a3a3a;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	padding-bottom: 0.2em;
+	border: 0;
+}
+p {
+	margin-bottom: 1em;
+}
+a:link {
+	color: black;
+	text-decoration: underline;
+}
+a:visited {
+	color: black;
+	text-decoration: underline;
+}
+a:hover {
+	color: black;
+	text-decoration: none;
+}
+a:active {
+	color: black;
+	text-decoration: underline;
+}
+strong {
+	font-weight: bold;
+}	
+#header-wrapper {
+	background-color: black;
+	height: 40px;
+}
+#header {
+	width: 970px;
+	margin: auto;
+}
+#header h1 {
+	color: white;
+	font-size: 18px;
+	margin: 0;	
+	padding: 3px 0 0 0;
+}
+#header h2 {
+	border-bottom: none;
+	color: #a8a8a8;
+	font-size: 12px;
+	margin-top: -2px;
+}
+#logo-content {
+	float: left;
+	width: 350px;
+}
+#logo-content a{
+	color: white;
+	text-decoration: none;
+}
+ul#top-nav {
+	float: right;
+	line-height: 40px;
+}
+ul#top-nav li{
+	float:left;
+	padding-left: 15px;
+}
+#top-nav a {
+	color: white;
+	font-size: 14px;
+	text-decoration: none;
+}
+#top-nav a:hover {
+	text-decoration: underline;
+}
+#main-content {
+	margin: auto;
+	padding-top: 50px;
+	width: 970px;
+}
+h1, h2 {
+	border-bottom: 2px solid black;
+}
+h1 {
+	font-size: 40px;
+	margin-bottom: 30px;
+	padding-bottom: 20px;
+}
+h2 {
+	font-size: 25px;
+	margin: 45px 0 20px 0;
+	padding-bottom: 15px;	
+}
+h3 {
+	font-family: Garamond, Times, serif;
+	font-style: italic;
+	font-size: 24px;
+	padding-bottom: 8px;
+}
+#intro .text-content em {
+	font-style: italic;
+	font-size: 40px;
+	line-height: 55px;
+	padding: 40px 0;
+}
+#intro .text-content {
+	float: left;
+	width: 650px;
+}
+#intro .sidebar {
+	float: right;
+	width: 250px;
+}
+#intro .sidebar img{
+	padding-bottom: 25px;
+}
+#intro .sidebar dt {
+	text-transform: uppercase;
+	padding-bottom: 15px;
+}
+#intro .sidebar dd {
+	color: black;
+	font-size: 18px;
+	padding-bottom: 20px;
+}
+#intro .sidebar a {
+	text-decoration: none;
+}
+#content {
+	width: 970px;
+	float: left;
+}
+
+.feature-list {
+	position: relative;
+}
+.feature-item {
+	float: left;
+	margin-bottom: 25px;
+	width: 100%;
+}
+.feature-item .description {
+	float: left;
+	width: 550px;
+}
+
+.feature-item .chart-content {
+	float: right;
+	width: 250px;
+} 
+.chart-bar {
+	border: 1px solid black;
+	background-image: url(images/chart-bar.png);
+	background-repeat: no-repeat;
+	background-color: #19cc19;
+	height: 16px;
+	width: 248px;
+}
+.chart-stats {
+	float:left;
+}
+.chart-stats li {
+	float: left;
+	font-weight:bold;
+	text-transform: uppercase;
+	width: 90px;
+}
+.chart-stats li.last {
+	float: right;
+	width: auto;
+}
+.chart-stats li em {
+	color: black;
+	display: block;
+	text-transform: none;
+	width: auto;
+}
+.detail-view .chart-stats {
+	margin-bottom: 30px;
+}
+/* detail view */
+.contribution-list {
+	width: 100%;
+}
+.contribution-list td {
+	min-height: 45px;
+	padding-bottom: 15px;
+}
+.contribution-list .first {
+	width: 230px;
+}
+.contribution-list .first strong, .comment-list .meta-info strong{
+	color: black;
+}
+.contribution-list .last {
+	color: black;
+	font-size: 16px;
+	font-width: bold;
+	text-align: right;
+	width: 160px;
+}
+.contribution-list .sum {
+	border-top: 2px solid black;
+	padding-top: 15px;
+}
+.comment-list li {
+	float: left;
+	margin-bottom: 15px;
+}
+.comment-list .meta-info {
+	float:left;
+	width: 230px;	
+}
+.comment-list .text-content {
+	float:left;
+	width: 660px;	
+}
+/* forms */
+label {
+	color: black;
+	display: block;
+	float: left;
+	font-size: 18px;
+	height: 40px;
+	padding-top: 3px;
+	position: relative;	
+	width: 220px;
+}
+input[type="text"], textarea {
+	border: 1px solid white;
+	font-size: 18px;	
+}
+input[type="text"]{
+	background-color: white;
+	display: block;
+	height: 40px;
+	line-height: 40px;	
+	width: 260px;	
+}
+textarea {
+	height: 95px;
+	line-height: 22px;
+	width: 740px;
+}
+a.close {
+	background: url(images/close-icon.png) no-repeat;
+	cursor: pointer;
+	display: block;
+	height: 27px;	
+	position: absolute;
+	right: 0;
+	width: 27px;		
+}
+.button {
+	background-color: black;
+	border: 1px solid black;
+	color: white;
+	font-size: 18px;
+	height: 40px;
+	line-height: 40px;
+	min-width: 200px;
+	text-transform: uppercase;
+}
+.std-form p {
+	margin-bottom: 18px;
+}
+.std-form .button {
+	margin-left: 220px;
+}
+.std-form label span {
+	color: gray;
+	display: block;
+	font-size: 11px;
+	position: absolute;
+	top: 23px;	
+}
