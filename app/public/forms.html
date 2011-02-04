@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>contriburator - forms</title>
+	<style media="all" type="text/css">@import "styles.css";</style>
+</head>
+<body>
+	<div id="header-wrapper">
+		<div id="header">
+			<div id="logo-content">
+				<h1><a href="/">Contriburator</a></h1>
+				<h2>Open-Source users support open-source developers</h2>
+			</div>
+			<ul id="top-nav">
+		    	<li><a href="/">About</a></li>
+				<li><a href="/">Foo</a></li>
+				<li><a href="/">Baz</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="main-content">
+		<h1>Edit Project</h1>
+		<form class="std-form" action="/">
+			<p>
+				<label>Name<span>The Name</span></label> <input type="text" size="50"/>
+			</p>
+			<p>
+				<label>Foo<span>The Foo</span></label> <input type="text" size="50"/>
+			</p>
+			
+			<p>
+				<label>Description</label> <textarea cols="50" rows="6"></textarea>
+			</p>
+			<p>
+				<input class="button" type="submit" value="save"/>
+			</p>
+		</form>
+		<div id="content">
+			<h2>Features</h2>
+			<ul class="feature-list">
+				<li class="feature-item">
+					<a id="close-icon-1" class="close"> </a>
+					<div class="description">
+						<h3>Collaborative authoring in realtime</h3>
+					    <p>This partially done already, if you'd grant us a little support we'd be able
+						to roll it out for you this summer.</p>
+					</div>
+				</li>
+				<li class="feature-item">
+					<a id="close-icon-2" class="close"> </a>
+					<div class="description">
+						<h3>Document Explorer</h3>
+					    <p>	Search and explore the whole set of documents using faceted navigation.
+							There will be visual elements 
+							that help you find documents you're interested in.</p>
+					</div>
+				</li>
+			</ul>			
+			<h2>Add new Feature</h2>
+			<form class="std-form" action="/">
+				<p>
+					<label>Name<span>The Name</span></label> <input type="text" size="50"/>
+				</p>
+				<p>
+					<label>Foo<span>The Foo</span></label> <input type="text" size="50"/>
+				</p>
+
+				<p>
+					<label>Description</label> <textarea cols="50" rows="6"></textarea>
+				</p>
+				<p>
+					<input class="button" type="submit" value="add feature"/>
+				</p>
+			</form>
+		</div>		
+	</div>
+</body>
+</html>
