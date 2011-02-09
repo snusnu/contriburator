@@ -5,6 +5,7 @@ require 'dm-validations'
 require 'dm-timestamps'
 require 'dm-transactions'
 require 'dm-types'
+require 'dm-zone-types'
 
 require 'dm-is-localizable'
 require 'dm-accepts_nested_attributes'
@@ -89,7 +90,7 @@ module Contriburator
       property :github,     String, :unique => true
       property :location,   String
 
-      property :created_at, DateTime
+      property :created_at, ZonedTime
 
       has n, :contributions
 
@@ -113,7 +114,7 @@ module Contriburator
         belongs_to :client,     'Project', :key => true
         belongs_to :dependency, 'Project', :key => true
 
-        property :created_at,  DateTime
+        property :created_at,  ZonedTime
 
         is :localizable do
           property :description, Text
@@ -139,8 +140,8 @@ module Contriburator
 
         property :id,          Serial
         property :goal,        Integer,  :required => true
-        property :start_date,  DateTime, :required => true
-        property :stop_date,   DateTime, :required => true
+        property :start_date,  ZonedTime, :required => true
+        property :stop_date,   ZonedTime, :required => true
 
         is :localizable do
           property :description,     Text, :required => true
@@ -164,7 +165,7 @@ module Contriburator
       property :issues,        URI
       property :mailing_list,  URI
       property :twitter,       String, :length => (0..255)
-      property :created_at,    DateTime
+      property :created_at,    ZonedTime
 
       is :localizable do
         property :description,     Text
@@ -227,7 +228,7 @@ module Contriburator
       property :channel,    String,  :required => true, :unique => :unique_channels
       property :logged,     Boolean, :required => true, :default => false
 
-      property :created_at, DateTime
+      property :created_at, ZonedTime
 
       def raw_channel_name
         channel.gsub('#', '')
