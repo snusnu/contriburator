@@ -9,6 +9,71 @@ module Contriburator
 
   module Config
 
+    module Persistence
+
+      def self.setup(log_stream, log_level)
+        Connection.new(log_stream, log_level).setup
+      end
+
+      def self.auto_migrate!(log_stream, log_level)
+        Connection.new(log_stream, log_level).auto_migrate!
+      end
+
+      def self.auto_upgrade!(log_stream, log_level)
+        Connection.new(log_stream, log_level).auto_upgrade!
+      end
+
+      class Connection
+
+        attr_reader :log_stream
+        attr_reader :log_level
+
+        def initialize(log_stream, log_level)
+          @log_stream = (log_stream == 'stdout' ? $stdout : log_stream)
+          @log_level  = log_level
+        end
+
+        def setup
+          setup_logger if log_stream
+
+          convention = DataMapper::NamingConventions::Resource::UnderscoredAndPluralizedWithoutModule
+          adapter    = DataMapper::setup(:default, Config['database'])
+          adapter.resource_naming_convention = convention
+          DataMapper.finalize
+
+          adapter
+        end
+
+        def auto_migrate!
+          setup
+          DataMapper.auto_migrate!
+        end
+
+        def auto_upgrade!
+          setup
+          DataMapper.auto_upgrade!
+        end
+
+      private
+
+        def setup_logger
+          DataMapper::Logger.new(log_stream(stream), level)
+        end
+
+      end # class Connection
+
+      class IdentityMap
+        def initialize(app)
+          @app = app
+        end
+
+        def call(env)
+          DataMapper.repository { @app.call(env) }
+        end
+      end # class IdentityMap
+
+    end # module Persistence
+
     def self.root
       @root ||= Contriburator.root.join('../config')
     end

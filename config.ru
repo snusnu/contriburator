@@ -6,7 +6,7 @@ $LOAD_PATH.unshift(File.expand_path('../app', __FILE__))
 require 'config'
 require 'server'
 
-Contriburator::Persistence.setup(log_stream, log_level)
+Contriburator::Config::Persistence.setup(log_stream, log_level)
 
 use Rack::CommonLogger
 
