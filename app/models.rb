@@ -164,11 +164,6 @@ module Contriburator
 
       has n, :bounties
 
-      has n, :irc_channels, :through => Resource
-
-
-      #accepts_nested_attributes_for :irc_channels
-
 
       def name
         @name ||= github_url.sub('http://github.com/', '')
@@ -180,24 +175,6 @@ module Contriburator
 
       def has_forks?
         !forks.empty?
-      end
-
-    end
-
-    class IrcChannel
-
-      include DataMapper::Resource
-
-      property :id,         Serial
-
-      property :server,     String,  :required => true, :unique => :unique_channels
-      property :channel,    String,  :required => true, :unique => :unique_channels
-      property :logged,     Boolean, :required => true, :default => false
-
-      property :created_at, ZonedTime
-
-      def raw_channel_name
-        channel.gsub('#', '')
       end
 
     end
@@ -227,24 +204,6 @@ module Contriburator
       property :anonymous, Boolean, :default => true
 
       # works
-
-      def self.nr_of_forkers
-        all(:fields => [ :person_id ], :kind => 'forker').map(&:person_id).uniq.size
-      end
-
-      def self.nr_of_watchers
-        all(:fields => [ :person_id ], :kind => 'watcher').map(&:person_id).uniq.size
-      end
-
-      def self.nr_of_collaborators
-        all(:fields => [ :person_id ], :kind => 'collaborator').map(&:person_id).uniq.size
-      end
-
-      def self.nr_of_contributors
-        all(:fields => [ :person_id ], :kind => 'contributor').map(&:person_id).uniq.size
-      end
-
-      # TODO doesn't work
 
       def self.forkers
         all_of_kind('forker')
