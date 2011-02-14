@@ -49,7 +49,7 @@ module Contriburator
 
       property :name,       String
       property :company,    String
-      property :homepage,   String, :length => 255
+      property :homepage,   URI
       property :email,      String
       property :twitter,    String
       property :irc,        String
@@ -124,7 +124,7 @@ module Contriburator
 
       property :id,            Serial
 
-      property :github_url,    String, :length => 255, :required => true, :unique => true
+      property :github_url,    URI, :required => true, :unique => true
 
       property :homepage,      URI
       property :documentation, URI
