@@ -77,8 +77,8 @@ module Contriburator
 
         storage_names[:default] = 'project_relationships'
 
-        belongs_to :client,     'Project', :key => true
-        belongs_to :dependency, 'Project', :key => true
+        belongs_to :client,     'Contriburator::Persistence::Project', :key => true
+        belongs_to :dependency, 'Contriburator::Persistence::Project', :key => true
 
         property :created_at,  ZonedTime
 
@@ -142,14 +142,14 @@ module Contriburator
 
       has n, :forks, self, :child_key => [:parent_id]
 
-      has n, :project_dependencies, 'Contriburator::Project::Relationship',
+      has n, :project_dependencies, 'Contriburator::Persistence::Project::Relationship',
         :child_key => [:client_id]
 
       has n, :dependencies, self,
         :through => :project_dependencies,
         :via     => :dependency
 
-      has n, :client_projects, 'Contriburator::Project::Relationship',
+      has n, :client_projects, 'Contriburator::Persistence::Project::Relationship',
         :child_key => [:dependency_id]
 
       has n, :clients, self,
@@ -158,7 +158,7 @@ module Contriburator
 
       has n, :contributions
 
-      has n, :members, 'Contributor',
+      has n, :members, 'Contriburator::Persistence::Contributor',
         :through => :contributions,
         :via     => :contributor
 
