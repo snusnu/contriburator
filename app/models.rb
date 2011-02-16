@@ -124,7 +124,7 @@ module Contriburator
 
       property :id,            Serial
 
-      property :github,        URI, :required => true, :unique => true
+      property :github,        String, :required => true, :unique => true
 
       property :homepage,      URI
       property :documentation, URI
