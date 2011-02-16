@@ -203,8 +203,6 @@ module Contriburator
 
       property :anonymous, Boolean, :default => true
 
-      # works
-
       def self.forkers
         all_of_kind('forker')
       end
