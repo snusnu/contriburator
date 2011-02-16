@@ -124,7 +124,7 @@ module Contriburator
 
       property :id,            Serial
 
-      property :github_url,    URI, :required => true, :unique => true
+      property :github,        URI, :required => true, :unique => true
 
       property :homepage,      URI
       property :documentation, URI
@@ -166,7 +166,7 @@ module Contriburator
 
 
       def name
-        @name ||= github_url.sub('http://github.com/', '')
+        @name ||= github.sub('http://github.com/', '')
       end
 
       def fork?
