@@ -23,7 +23,7 @@ namespace :db do
     Contriburator::Config::Persistence.auto_migrate!(log_stream, log_level)
   end
 
-  desc "Import the initially available jobs"
+  desc "Import necessary seed data"
   task :seed => :automigrate do
 
     # create the initial seed data
