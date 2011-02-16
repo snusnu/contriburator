@@ -57,7 +57,7 @@ module Contriburator
       private
 
         def setup_logger
-          DataMapper::Logger.new(log_stream(stream), level)
+          DataMapper::Logger.new(log_stream, log_level)
         end
 
       end # class Connection
