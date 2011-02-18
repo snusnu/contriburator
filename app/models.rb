@@ -63,10 +63,6 @@ module Contriburator
       has n, :projects,
         :through => :contributions
 
-      def tweets?
-        !twitter_name.nil?
-      end
-
     end
 
     class Project
