@@ -81,6 +81,7 @@ module Contriburator
         is :localizable do
           property :description, Text
         end
+
       end
 
       class Bounty
@@ -91,8 +92,8 @@ module Contriburator
 
           storage_names[:default] = 'bounty_states'
 
-          property :name,        String, :key => true, :length => 20
-          property :description, Text, :required => true
+          property :name,        String, :key      => true, :length => 20
+          property :description, Text,   :required => true
 
         end # class Status
 
@@ -101,14 +102,13 @@ module Contriburator
         storage_names[:default] = 'project_bounties'
 
         property :id,          Serial
-        property :goal,        Integer,  :required => true
+        property :goal,        Integer,   :required => true
         property :start_date,  ZonedTime, :required => true
         property :stop_date,   ZonedTime, :required => true
 
         is :localizable do
           property :description,     Text, :required => true
         end
-
 
         belongs_to :status, :child_key => [ :name ]
 
@@ -132,7 +132,6 @@ module Contriburator
       is :localizable do
         property :description,     Text
       end
-
 
       belongs_to :parent, self, :required => false
 
@@ -159,7 +158,6 @@ module Contriburator
         :via     => :contributor
 
       has n, :bounties
-
 
       def name
         @name ||= github.sub('http://github.com/', '')
