@@ -163,14 +163,6 @@ module Contriburator
         @name ||= github.sub('http://github.com/', '')
       end
 
-      def fork?
-        !self.parent.nil?
-      end
-
-      def has_forks?
-        !forks.empty?
-      end
-
     end
 
     class Contribution
@@ -196,26 +188,6 @@ module Contriburator
       belongs_to :kind,        :key => true, :child_key => [:kind], :parent_key => [:name]
 
       property :anonymous, Boolean, :default => true
-
-      def self.forkers
-        all_of_kind('forker')
-      end
-
-      def self.watchers
-        all_of_kind('watcher')
-      end
-
-      def self.collaborators
-        all_of_kind('collaborator')
-      end
-
-      def self.contributors
-        all_of_kind('contributor')
-      end
-
-      def self.all_of_kind(kind)
-        all(:fields => [ :person_id ], :kind => kind, :unique => true).size
-      end
 
     end
 
