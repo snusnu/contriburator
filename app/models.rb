@@ -110,6 +110,7 @@ module Contriburator
           property :description,     Text, :required => true
         end
 
+	belongs_to :project
         belongs_to :status, :child_key => [ :name ]
 
       end # class Bounty
