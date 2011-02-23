@@ -26,6 +26,8 @@ namespace :db do
   desc "Import necessary seed data"
   task :seed => :automigrate do
 
+    Contriburator::Persistence::Language.create :code => 'en-US', :name => 'English (USA)'
+
     # create the initial seed data
   end
 
