@@ -200,11 +200,13 @@ module Contriburator
 
       include DataMapper::Resource
 
+      property :id,        Serial
+
       property :amount,    Integer, :min => 0
       property :anonymous, Boolean, :default => true
 
-      belongs_to :contributor, :key => true
-      belongs_to :kind,        :key => true, :child_key => [:kind], :parent_key => [:name]
+      belongs_to :contributor
+      belongs_to :kind, :child_key => [:kind], :parent_key => [:name]
 
       has 0..1, :project_contribution,
         'Contriburator::Persistence::Project::Contribution'
