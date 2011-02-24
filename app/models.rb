@@ -136,6 +136,7 @@ module Contriburator
         'Contriburator::Persistence::Project::Contribution'
 
       has n, :contributions,
+        'Contriburator::Persistence::Contribution',
         :through => :project_contributions
 
       has n, :members, 'Contriburator::Persistence::Contributor',
@@ -172,6 +173,7 @@ module Contriburator
         'Contriburator::Persistence::Feature::Contribution'
 
       has n, :contributions,
+        'Contriburator::Persistence::Contribution',
         :through => :feature_contributions
 
       is :localizable do
