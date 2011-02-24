@@ -50,8 +50,8 @@ module Contriburator
       property :name,       String
       property :company,    String
       property :homepage,   URI
-      property :email,      String
-      property :twitter,    String
+      property :email,      String, :unique => true
+      property :twitter,    String, :unique => true
       property :irc,        String
       property :github,     String, :unique => true
       property :location,   String
