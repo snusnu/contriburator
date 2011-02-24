@@ -130,7 +130,9 @@ module Contriburator
         :through => :client_projects,
         :via     => :client
 
-      has n, :project_contributions, 'Contriburator::Persistence::Project::Contribution'
+      has n, :project_contributions,
+        'Contriburator::Persistence::Project::Contribution'
+
       has n, :contributions,
         :through => :project_contributions
 
@@ -162,7 +164,9 @@ module Contriburator
 
       belongs_to :project
 
-      has n, :feature_contributions, 'Contriburator::Persistence::Feature::Contribution'
+      has n, :feature_contributions,
+        'Contriburator::Persistence::Feature::Contribution'
+
       has n, :contributions,
         :through => :feature_contributions
 
@@ -180,7 +184,7 @@ module Contriburator
 
         storage_names[:default] = 'contribution_kinds'
 
-        property :name,        String, :key => true
+        property :name, String, :key => true
 
         is :localizable do
           property :description, Text
