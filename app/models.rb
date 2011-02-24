@@ -84,37 +84,6 @@ module Contriburator
 
       end
 
-      class Bounty
-
-        class Status
-
-          include DataMapper::Resource
-
-          storage_names[:default] = 'bounty_states'
-
-          property :name,        String, :key      => true, :length => 20
-          property :description, Text,   :required => true
-
-        end # class Status
-
-        include DataMapper::Resource
-
-        storage_names[:default] = 'project_bounties'
-
-        property :id,          Serial
-        property :goal,        Integer,   :required => true
-        property :start_date,  ZonedTime, :required => true
-        property :stop_date,   ZonedTime, :required => true
-
-        is :localizable do
-          property :description,     Text, :required => true
-        end
-
-	      belongs_to :project
-        belongs_to :status, :child_key => [ :name ]
-
-      end # class Bounty
-
       class Contribution
 
         include DataMapper::Resource
@@ -242,6 +211,37 @@ module Contriburator
         :through => :feature_contribution
 
     end # Contribution
+
+    class Bounty
+
+      class Status
+
+        include DataMapper::Resource
+
+        storage_names[:default] = 'bounty_states'
+
+        property :name,        String, :key      => true, :length => 20
+        property :description, Text,   :required => true
+
+      end # class Status
+
+      include DataMapper::Resource
+
+      storage_names[:default] = 'project_bounties'
+
+      property :id,          Serial
+      property :goal,        Integer,   :required => true
+      property :start_date,  ZonedTime, :required => true
+      property :stop_date,   ZonedTime, :required => true
+
+      is :localizable do
+        property :description, Text, :required => true
+      end
+
+      belongs_to :project
+      belongs_to :status, :child_key => [ :name ]
+
+    end # class Bounty
 
   end # module Persistence
 end # module Contriburator
