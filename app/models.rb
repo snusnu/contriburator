@@ -50,11 +50,11 @@ module Contriburator
       property :name,       String
       property :company,    String
       property :homepage,   URI
+      property :location,   String
       property :email,      String, :unique => true
       property :twitter,    String, :unique => true
-      property :irc,        String
       property :github,     String, :unique => true
-      property :location,   String
+      property :irc,        String
 
       property :created_at, ZonedTime
 
