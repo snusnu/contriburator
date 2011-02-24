@@ -138,8 +138,6 @@ module Contriburator
         :through => :contributions,
         :via     => :contributor
 
-      has n, :bounties
-
       def name
         @name ||= github.sub('http://github.com/', '')
       end
@@ -238,7 +236,6 @@ module Contriburator
         property :description, Text, :required => true
       end
 
-      belongs_to :project
       belongs_to :status, :child_key => [ :name ]
 
     end # class Bounty
