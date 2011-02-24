@@ -115,6 +115,15 @@ module Contriburator
 
       end # class Bounty
 
+      class Contribution
+
+        include DataMapper::Resource
+
+        belongs_to :contribution, 'Contriburator::Persistence::Contribution', :key => true
+        belongs_to :project
+
+      end
+
       include DataMapper::Resource
 
       storage_names[:default] = 'projects'
@@ -152,7 +161,9 @@ module Contriburator
         :through => :client_projects,
         :via     => :client
 
-      has n, :contributions
+      has n, :project_contributions, 'Contriburator::Persistence::Project::Contribution'
+      has n, :contributions,
+        :through => :project_contributions
 
       has n, :members, 'Contriburator::Persistence::Contributor',
         :through => :contributions,
@@ -162,6 +173,34 @@ module Contriburator
 
       def name
         @name ||= github.sub('http://github.com/', '')
+      end
+
+    end # Project
+
+    class Feature
+
+      class Contribution
+
+        include DataMapper::Resource
+
+        belongs_to :contribution, 'Contriburator::Persistence::Contribution', :key => true
+        belongs_to :feature
+
+      end
+
+      include DataMapper::Resource
+
+      property :id,   Serial
+      property :name, String
+
+      belongs_to :project
+
+      has n, :feature_contributions, 'Contriburator::Persistence::Feature::Contribution'
+      has n, :contributions,
+        :through => :feature_contributions
+
+      is :localizable do
+        property :description, Text
       end
 
     end
@@ -184,13 +223,25 @@ module Contriburator
 
       include DataMapper::Resource
 
-      belongs_to :project,     :key => true
+      property :amount,    Integer, :min => 0
+      property :anonymous, Boolean, :default => true
+
       belongs_to :contributor, :key => true
       belongs_to :kind,        :key => true, :child_key => [:kind], :parent_key => [:name]
 
-      property :anonymous, Boolean, :default => true
+      has 0..1, :project_contribution,
+        'Contriburator::Persistence::Project::Contribution'
 
-    end
+      has 0..1, :project,
+        :through => :project_contribution
+
+      has 0..1, :feature_contribution,
+        'Contriburator::Persistence::Feature::Contribution'
+
+      has 0..1, :feature,
+        :through => :feature_contribution
+
+    end # Contribution
 
   end # module Persistence
 end # module Contriburator
