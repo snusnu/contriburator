@@ -213,10 +213,10 @@ module Contriburator
 
       include DataMapper::Resource
 
-      property :id,        Serial
+      property :id,         Serial
 
-      property :amount,    Integer, :min => 0
-      property :anonymous, Boolean, :default => true
+      property :amount,     Integer, :min => 0
+      property :anonymous,  Boolean, :default => true
       property :created_at, ZonedTime
 
       belongs_to :contributor
