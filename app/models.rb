@@ -88,6 +88,8 @@ module Contriburator
 
         include DataMapper::Resource
 
+        storage_names[:default] = 'project_contributions'
+
         belongs_to :contribution, 'Contriburator::Persistence::Contribution', :key => true
         belongs_to :project
 
@@ -151,6 +153,8 @@ module Contriburator
       class Contribution
 
         include DataMapper::Resource
+
+        storage_names[:default] = 'feature_contributions'
 
         belongs_to :contribution, 'Contriburator::Persistence::Contribution', :key => true
         belongs_to :feature
