@@ -217,6 +217,7 @@ module Contriburator
 
       property :amount,    Integer, :min => 0
       property :anonymous, Boolean, :default => true
+      property :created_at, ZonedTime
 
       belongs_to :contributor
       belongs_to :kind, :child_key => [:kind], :parent_key => [:name]
