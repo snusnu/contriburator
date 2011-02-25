@@ -1,4 +1,4 @@
-$LOAD_PATH.unshift(File.expand_path('../app', __FILE__))
+$LOAD_PATH.unshift(File.expand_path('../service', __FILE__))
 
 log_stream = ENV['DM_LOG']
 log_level  = ENV['DM_LOG_LEVEL'] || :debug
@@ -28,7 +28,6 @@ namespace :db do
 
     Contriburator::Persistence::Language.create :code => 'en-US', :name => 'English (USA)'
 
-    # create the initial seed data
   end
 
 end

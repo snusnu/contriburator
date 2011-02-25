@@ -1,0 +1,11 @@
+--- 
+database:
+  adapter: mysql
+  username: root
+  password:
+  host: localhost
+  database: contriburator
+
+github:
+  id: github-id
+  secret: github-secret

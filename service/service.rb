@@ -2,12 +2,15 @@ require 'pathname'
 
 require 'json'
 require 'sinatra/base'
-require 'mustache/sinatra'
 require 'omniauth'
 
 require 'config'
 require 'models'
-require 'views'
+
+require 'erubis'
+
+# make erb use erubis by default
+Tilt.register :erb, Tilt[:erubis]
 
 module Contriburator
 
@@ -15,11 +18,7 @@ module Contriburator
 
     enable :sessions
 
-    register Mustache::Sinatra
-
-    set :mustache, {
-      :namespace => Contriburator::Views
-    }
+    set :public, Config.public
 
     use OmniAuth::Builder do
       provider :github, Config['github']['id'], Config['github']['secret']
@@ -45,14 +44,14 @@ module Contriburator
         user.token == token
       end
 
-      def requested_status
-        (params[:status] || '').split(',')
-      end
+    end
 
+    not_found do
+      File.read(Config.public.join('404.html'))
     end
 
     get '/' do
-      Views::Home.new.render
+      erb File.read(Config.public.join('app.html'))
     end
 
     get '/auth/github/callback' do
@@ -61,18 +60,8 @@ module Contriburator
 
       session[:token] = user.token
 
-      redirect "/users/#{user.login}/edit"
+      { :login => login }.to_json
     end
-
-    get '/users/:login/edit' do
-      user = authenticate_session(params[:login])
-      Views::Users::Edit.new(user).render
-    end
-
-    get '/users/:login' do
-      Views::Users::Show.new(params[:login]).render
-    end
-
 
   end # class Server
 end # module Contriburator

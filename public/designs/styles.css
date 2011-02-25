@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -24,7 +24,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -80,7 +80,7 @@ a:active {
 }
 strong {
 	font-weight: bold;
-}	
+}
 #header-wrapper {
 	background-color: black;
 	height: 40px;
@@ -92,7 +92,7 @@ strong {
 #header h1 {
 	color: white;
 	font-size: 18px;
-	margin: 0;	
+	margin: 0;
 	padding: 3px 0 0 0;
 }
 #header h2 {
@@ -141,7 +141,7 @@ h1 {
 h2 {
 	font-size: 25px;
 	margin: 45px 0 20px 0;
-	padding-bottom: 15px;	
+	padding-bottom: 15px;
 }
 h3 {
 	font-family: Garamond, Times, serif;
@@ -199,7 +199,7 @@ h3 {
 .feature-item .chart-content {
 	float: right;
 	width: 250px;
-} 
+}
 .chart-bar {
 	border: 1px solid black;
 	background-image: url(images/chart-bar.png);
@@ -261,11 +261,11 @@ h3 {
 }
 .comment-list .meta-info {
 	float:left;
-	width: 230px;	
+	width: 230px;
 }
 .comment-list .text-content {
 	float:left;
-	width: 660px;	
+	width: 660px;
 }
 /* forms */
 label {
@@ -275,19 +275,19 @@ label {
 	font-size: 18px;
 	height: 40px;
 	padding-top: 3px;
-	position: relative;	
+	position: relative;
 	width: 220px;
 }
 input[type="text"], textarea {
 	border: 1px solid white;
-	font-size: 18px;	
+	font-size: 18px;
 }
 input[type="text"]{
 	background-color: white;
 	display: block;
 	height: 40px;
-	line-height: 40px;	
-	width: 260px;	
+	line-height: 40px;
+	width: 260px;
 }
 textarea {
 	height: 95px;
@@ -298,10 +298,10 @@ a.close {
 	background: url(images/close-icon.png) no-repeat;
 	cursor: pointer;
 	display: block;
-	height: 27px;	
+	height: 27px;
 	position: absolute;
 	right: 0;
-	width: 27px;		
+	width: 27px;
 }
 .button {
 	background-color: black;
@@ -324,5 +324,5 @@ a.close {
 	display: block;
 	font-size: 11px;
 	position: absolute;
-	top: 23px;	
+	top: 23px;
 }

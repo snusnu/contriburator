@@ -75,7 +75,11 @@ module Contriburator
     end # module Persistence
 
     def self.root
-      @root ||= Contriburator.root.join('../config')
+      @root ||= Contriburator.root.join('..')
+    end
+
+    def self.public
+      root.join('public')
     end
 
     def self.[](key)

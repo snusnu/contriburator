@@ -6,3 +6,6 @@ database:
   host: localhost
   database: contriburator
 
+github:
+  id: github-id
+  secret: github-secret
