@@ -78,7 +78,7 @@ module Contriburator
       @root ||= Contriburator.root.join('..')
     end
 
-    def self.public
+    def self.public_dir
       root.join('public')
     end
 

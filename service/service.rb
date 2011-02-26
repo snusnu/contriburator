@@ -8,6 +8,7 @@ require 'config'
 require 'models'
 
 require 'erubis'
+require 'brewery'
 
 # make erb use erubis by default
 Tilt.register :erb, Tilt[:erubis]
@@ -18,7 +19,7 @@ module Contriburator
 
     enable :sessions
 
-    set :public, Config.public
+    set :public, Config.public_dir
 
     use OmniAuth::Builder do
       provider :github, Config['github']['id'], Config['github']['secret']
@@ -47,11 +48,13 @@ module Contriburator
     end
 
     not_found do
-      File.read(Config.public.join('404.html'))
+      File.read(Config.public_dir.join('404.html'))
     end
 
     get '/' do
-      erb File.read(Config.public.join('app.html'))
+      erb File.read(Config.public_dir.join('app.html')), :locals => {
+        :js_includes => Brewery.js_includes
+      }
     end
 
     get '/auth/github/callback' do

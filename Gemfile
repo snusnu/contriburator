@@ -5,6 +5,7 @@ gem 'json'
 gem 'sinatra'
 gem 'omniauth'
 gem 'erubis'
+gem 'closure-compiler'
 
 gem 'dm-core',           :git => 'http://github.com/datamapper/dm-core.git'
 gem 'dm-mysql-adapter',  :git => 'http://github.com/datamapper/dm-mysql-adapter.git'

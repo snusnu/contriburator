@@ -1,0 +1,10 @@
+{
+  "app": [
+    "utils"
+  ],
+  "lib": [
+    "json2",
+    "underscore",
+    "backbone"
+  ]
+}

@@ -4,3 +4,6 @@ config/config.yml
 tmp
 log
 
+public/js/app
+public/js/lib-min.js
+public/js/app-min.js
