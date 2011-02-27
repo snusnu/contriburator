@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.expand_path('../service', __FILE__))
 $LOAD_PATH.unshift(File.expand_path('../lib',     __FILE__))
 
+require 'rake'
 require 'config'
 require 'models'
 require 'brewery'
@@ -55,3 +56,6 @@ namespace :build do
   end
 
 end
+
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'

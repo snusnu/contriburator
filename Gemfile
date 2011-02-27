@@ -28,4 +28,5 @@ group :development do
   gem 'rake'
   gem 'interactive_editor'
   gem 'closure-compiler'
+  gem 'jasmine'
 end
