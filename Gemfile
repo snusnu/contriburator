@@ -5,7 +5,6 @@ gem 'json'
 gem 'sinatra'
 gem 'omniauth'
 gem 'erubis'
-gem 'closure-compiler'
 
 gem 'dm-core',           :git => 'http://github.com/datamapper/dm-core.git'
 gem 'dm-mysql-adapter',  :git => 'http://github.com/datamapper/dm-mysql-adapter.git'
@@ -28,4 +27,5 @@ gem 'dm-accepts_nested_attributes', :git => 'http://github.com/snusnu/dm-accepts
 group :development do
   gem 'rake'
   gem 'interactive_editor'
+  gem 'closure-compiler'
 end
