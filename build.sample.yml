@@ -1,0 +1,37 @@
+compile:
+
+  - source: app
+    target: public/js/app
+
+package:
+
+  - folder: public/js/lib
+    source:
+      - json2
+      - underscore
+      - backbone
+    combine:
+      target: public/js/lib.js
+      environments:
+        - production
+    minify:
+      source: public/js/lib.js
+      target: public/js/lib-min.js
+      environments:
+        - production
+      cleanup: true
+
+  - folder: public/js/app
+    source:
+      - utils
+    combine:
+      target: public/js/app.js
+      environments:
+        - production
+    minify:
+      source: public/js/app.js
+      target: public/js/app-min.js
+      environments:
+        - production
+      cleanup: true
+

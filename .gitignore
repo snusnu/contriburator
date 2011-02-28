@@ -4,6 +4,7 @@ config/config.yml
 tmp
 log
 
+build.yml
 public/js/app
 public/js/lib-min.js
 public/js/app-min.js
