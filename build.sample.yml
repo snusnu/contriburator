@@ -1,37 +1,42 @@
-compile:
+# Commented lines represent the defaults
+# and can be changed or removed entirely.
 
-  - source: app
-    target: public/js/app
+# public_dir: public
 
-package:
+templates:
 
-  - folder: public/js/lib
-    source:
-      - json2
-      - underscore
-      - backbone
-    combine:
-      target: public/js/lib.js
+  - source: app/templates
+    # extensions:
+    #   - html
+
+bundles: # order matters
+
+  - compress:
+      source: js/lib
+      # target: js/lib-min.js
       environments:
         - production
-    minify:
-      source: public/js/lib.js
-      target: public/js/lib-min.js
-      environments:
-        - production
-      cleanup: true
 
-  - folder: public/js/app
-    source:
-      - utils
-    combine:
-      target: public/js/app.js
-      environments:
-        - production
-    minify:
-      source: public/js/app.js
-      target: public/js/app-min.js
-      environments:
-        - production
-      cleanup: true
+    includes: # order matters
+      - json2.js
+      - underscore.js
+      - backbone.js
 
+  - compile:
+      source: app
+      target: js/app
+      # bare: true
+
+    compress:
+      source: js/app
+      # target: js/app-min.js
+      environments:
+        - production
+
+    includes: # order matters
+      - utils.js
+
+  - compile:
+      source: spec/app
+      target: spec/js
+      # bare: true
