@@ -25,26 +25,26 @@ class Brewery
     new.templates
   end
 
-  module Coffee
+  module Compiler
 
-    def coffee(compilation, *flags)
-      puts "COMPILING #{coffee_command(compilation, *flags)}"
-      system coffee_command(compilation, *flags)
+    def compile(compilation, *flags)
+      puts "COMPILING #{compile_command(compilation, *flags)}"
+      system compile_command(compilation, *flags)
       self
     end
 
-    def coffee_command(compilation, *flags)
-      "coffee -o #{compilation.target} #{coffee_flags(compilation, *flags)} --compile #{compilation.source}"
+    def compile_command(compilation, *flags)
+      "coffee -o #{compilation.target} #{compile_flags(compilation, *flags)} --compile #{compilation.source}"
     end
 
-    def coffee_flags(compilation, *flags)
+    def compile_flags(compilation, *flags)
       flags << '--bare' if compilation.bare?
       flags.join(' ')
     end
 
-  end # module Coffee
+  end # module Compiler
 
-  include Coffee
+  include Compiler
 
   DEFAULT_ROOT        = Pathname(Dir.pwd)
   DEFAULT_ENVIRONMENT = 'development'
@@ -75,12 +75,12 @@ class Brewery
   end
 
   def compile
-    compilations.each { |bundle| coffee(bundle.compilation) }
+    compilations.each { |bundle| compile(bundle.compilation) }
     self
   end
 
   def watch
-    compilations.each { |bundle| coffee(bundle.compilation, '--watch') }
+    compilations.each { |bundle| compile(bundle.compilation, '--watch') }
     self
   end
 
@@ -271,10 +271,10 @@ class Brewery
 
     class Coffeescript < Javascript
 
-      include Coffee
+      include Compiler
 
       def combine
-        coffee(bundle.compilation)
+        compile(bundle.compilation)
         super
         self
       end
