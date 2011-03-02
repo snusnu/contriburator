@@ -4,8 +4,8 @@ require 'json'
 require 'sinatra/base'
 require 'omniauth'
 
-require 'config'
-require 'models'
+require 'service/config'
+require 'service/models'
 
 require 'erubis'
 require 'brewery'

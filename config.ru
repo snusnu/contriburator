@@ -1,8 +1,8 @@
-$LOAD_PATH.unshift(File.expand_path('../lib',     __FILE__))
-$LOAD_PATH.unshift(File.expand_path('../service', __FILE__))
+$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
+$LOAD_PATH.unshift(File.expand_path('../app', __FILE__))
 
-require 'config'
-require 'service'
+require 'service/config'
+require 'service/service'
 
 log_stream = ENV['DM_LOG']
 log_level  = ENV['DM_LOG_LEVEL'] || :debug

@@ -4,7 +4,7 @@ require 'yaml'
 module Contriburator
 
   def self.root
-    @root ||= Pathname(File.dirname(__FILE__))
+    @root ||= Pathname(File.dirname(__FILE__)).parent
   end
 
   module Config
