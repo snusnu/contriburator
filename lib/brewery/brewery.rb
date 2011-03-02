@@ -158,7 +158,7 @@ class Brewery
       end
 
       def compress?(environment)
-        compression && compression.environments.include?(environment.to_s)
+        compression && compression.compress?(environment)
       end
 
       def includes(environment)
@@ -205,6 +205,10 @@ class Brewery
           @target       = compression['target'      ] || "#{@source}-min.js"
           @environments = compression['environments'] || []
         end
+
+				def compress?(environment)
+					environments.include?(environment.to_s)
+				end
 
       end # class Compression
     end # class Bundle
