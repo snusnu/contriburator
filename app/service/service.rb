@@ -53,6 +53,7 @@ module Contriburator
 
     get '/' do
       erb File.read(Config.public_dir.join('app.html')), :locals => {
+        :templates           => Brewery.templates,
         :javascript_includes => Brewery.javascript_includes
       }
     end

@@ -32,6 +32,10 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <script src="js/lib/modernizr-1.7.min.js"></script>
 
+  <!-- Templates for javascript to render -->
+  <% templates.each do |template| %>
+  <%= template %>
+  <% end %>
 </head>
 
 <body lang="en">
