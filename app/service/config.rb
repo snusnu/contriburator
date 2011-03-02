@@ -91,7 +91,7 @@ module Contriburator
     def self.config
       return @config if @config
 
-      @config = YAML.load_file(root.join('config.yml'))
+      @config = YAML.load_file(root.join('service.yml'))
     end
 
   end # module Config

@@ -1,10 +1,9 @@
-$LOAD_PATH.unshift(File.expand_path('../service', __FILE__))
-$LOAD_PATH.unshift(File.expand_path('../lib',     __FILE__))
+$LOAD_PATH.unshift(File.expand_path('../app/', __FILE__))
+$LOAD_PATH.unshift(File.expand_path('../lib',  __FILE__))
 
 require 'rake'
-require 'config'
-require 'models'
-require 'brewery'
+require 'service/config'
+require 'service/models'
 
 log_stream = ENV['DM_LOG']
 log_level  = ENV['DM_LOG_LEVEL'] || :debug
