@@ -162,7 +162,7 @@ class Brewery
       end
 
       def includes(environment)
-        compress?(environment) ? [ compression.target ] : @all_includes
+        compress?(environment) ? [ compression.target ] : all_includes
       end
 
       def compilation?
