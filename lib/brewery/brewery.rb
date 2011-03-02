@@ -5,46 +5,34 @@ require 'closure-compiler'
 
 class Brewery
 
-  def self.compile
-    new.compile
-  end
+	%w[ compile watch build includes templates ].each do |command|
+		class_eval <<-RUBY, __FILE__, __LINE__ + 1
+			def self.#{command}(env = nil, root = nil, file_name = nil)
+				new(env, root, file_name).#{command}
+			end
+		RUBY
+	end
 
-  def self.watch
-    new.watch
-  end
+  module Compilation
 
-  def self.build
-    new.build
-  end
-
-  def self.javascript_includes
-    new.includes
-  end
-
-  def self.templates
-    new.templates
-  end
-
-  module Compiler
-
-    def compile(compilation, *flags)
-      puts "COMPILING #{compile_command(compilation, *flags)}"
-      system compile_command(compilation, *flags)
+    def self.run(compilation, *flags)
+			command = statement(compilation, *flags)
+      puts "COMPILING #{command}"
+      system command
       self
     end
 
-    def compile_command(compilation, *flags)
-      "coffee -o #{compilation.target} #{compile_flags(compilation, *flags)} --compile #{compilation.source}"
+    def self.statement(compilation, *flags)
+			source, target = compilation.source, compilation.target
+      "coffee -o #{target} #{flags(compilation, *flags)} --compile #{source}"
     end
 
-    def compile_flags(compilation, *flags)
+    def self.flags(compilation, *flags)
       flags << '--bare' if compilation.bare?
       flags.join(' ')
     end
 
-  end # module Compiler
-
-  include Compiler
+  end # module Compilation
 
   DEFAULT_ROOT        = Pathname(Dir.pwd)
   DEFAULT_ENVIRONMENT = 'development'
@@ -75,12 +63,12 @@ class Brewery
   end
 
   def compile
-    compilations.each { |bundle| compile(bundle.compilation) }
+    compilations.each { |bundle| Compilation.run(bundle.compilation) }
     self
   end
 
   def watch
-    compilations.each { |bundle| compile(bundle.compilation, '--watch') }
+    compilations.each { |bundle| Compilation.run(bundle.compilation, '--watch') }
     self
   end
 
@@ -275,10 +263,8 @@ class Brewery
 
     class Coffeescript < Javascript
 
-      include Compiler
-
       def combine
-        compile(bundle.compilation)
+        Compilation.run(bundle.compilation)
         super
         self
       end
