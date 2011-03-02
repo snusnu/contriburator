@@ -206,9 +206,9 @@ class Brewery
           @environments = compression['environments'] || []
         end
 
-				def compress?(environment)
-					environments.include?(environment.to_s)
-				end
+        def compress?(environment)
+          environments.include?(environment.to_s)
+        end
 
       end # class Compression
     end # class Bundle
