@@ -5,13 +5,13 @@ require 'closure-compiler'
 
 class Brewery
 
-	%w[ compile watch build includes templates ].each do |command|
-		class_eval <<-RUBY, __FILE__, __LINE__ + 1
-			def self.#{command}(env = nil, root = nil, file_name = nil)
-				new(env, root, file_name).#{command}
-			end
-		RUBY
-	end
+  %w[ compile watch build includes templates ].each do |command|
+    class_eval <<-RUBY, __FILE__, __LINE__ + 1
+      def self.#{command}(env = nil, root = nil, file_name = nil)
+        new(env, root, file_name).#{command}
+      end
+    RUBY
+  end
 
   module Compilation
 
