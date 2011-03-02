@@ -87,7 +87,7 @@ the application's [coffeescript files](https://github.com/snusnu/contriburator/t
 Depending on the `RACK_ENV` that was used to start the server, the
 application will either serve minified or regular javascript files.
 
-Just like the `build` task, the application uses the [build.yml](https://github.com/snusnu/contriburator/blob/master/build.yml) file to figure out the correct order in which to reference the
+Just like the `build` task, the application uses the [build.yml](https://github.com/snusnu/contriburator/blob/master/build.sample.yml) file to figure out the correct order in which to reference the
 javascript files from within the html.
 
 ### development environment
