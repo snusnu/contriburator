@@ -5,6 +5,7 @@ tmp
 log
 
 build.yml
-public/js/app
+
+public/js/app/*.js
 public/js/lib-min.js
 public/js/app-min.js
