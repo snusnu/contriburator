@@ -16,14 +16,14 @@ class Brewery
   module Compilation
 
     def self.run(compilation, *flags)
-			command = statement(compilation, *flags)
+      command = statement(compilation, *flags)
       puts "COMPILING #{command}"
       system command
       self
     end
 
     def self.statement(compilation, *flags)
-			source, target = compilation.source, compilation.target
+      source, target = compilation.source, compilation.target
       "coffee -o #{target} #{flags(compilation, *flags)} --compile #{source}"
     end
 
