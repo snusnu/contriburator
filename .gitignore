@@ -1,10 +1,10 @@
 .bundle
 Gemfile.lock
-config/config.yml
 tmp
 log
 
 build.yml
+service.yml
 
 public/js/app/*.js
 public/js/lib-min.js
