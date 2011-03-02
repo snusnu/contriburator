@@ -5,6 +5,26 @@ require 'closure-compiler'
 
 class Brewery
 
+  def self.compile
+    new.compile
+  end
+
+  def self.watch
+    new.watch
+  end
+
+  def self.build
+    new.build
+  end
+
+  def self.javascript_includes
+    new.includes
+  end
+
+  def self.templates
+    new.templates
+  end
+
   module Coffee
 
     def coffee(compilation, *flags)
@@ -23,18 +43,6 @@ class Brewery
     end
 
   end # module Coffee
-
-  def self.compile
-    new.compile
-  end
-
-  def self.watch
-    new.watch
-  end
-
-  def self.build
-    new.build
-  end
 
   include Coffee
 

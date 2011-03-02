@@ -10,7 +10,7 @@ log_level  = ENV['DM_LOG_LEVEL'] || :debug
 Contriburator::Config::Persistence.setup(log_stream, log_level)
 
 require 'brewery' # build minified js in production env
-Brewery.new.build_all if ENV['RACK_ENV'] == 'production'
+Brewery.build if ENV['RACK_ENV'] == 'production'
 
 use Rack::CommonLogger
 
