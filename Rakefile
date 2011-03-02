@@ -27,34 +27,8 @@ namespace :db do
 
 end
 
-namespace :build do
-
-  desc "Compile coffee in 'public/app' to js in 'public/js'"
-  task :brew do
-    Brewery.brew
-  end
-
-  desc "Watch and compile coffee in 'public/app' to js in 'public/js' continuously"
-  task :watch do
-    Brewery.watch
-  end
-
-  desc "Combine and minify js libs (only in production env)"
-  task :lib do
-    Brewery.build_lib
-  end
-
-  desc "Compile coffeescripts (also combine and minify in production)"
-  task :app do
-    Brewery.build_app
-  end
-
-  desc "Same as running 'build:lib' followed by 'build:app'"
-  task :all do
-    Brewery.build_all
-  end
-
-end
+require 'brewery'
+load 'brewery/tasks/brewery.rake'
 
 require 'jasmine'
 load 'jasmine/tasks/jasmine.rake'

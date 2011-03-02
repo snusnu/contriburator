@@ -30,12 +30,12 @@ to clone the repository and then run `bundle install`.
     cd contriburator
     bundle install
 
-Once that's done, make sure to make a copy of the `config.yml.sample`
-file and store it as `config.yml`.
+Once that's done, make sure to make a copy of the `service.sample.yml`
+file and store it as `service.yml`.
 
-    cp config.yml.sample config.yml
+    cp service.sample.yml service.yml
 
-Open the `config.yml` using your favorite editor and configure your
+Open the `service.yml` using your favorite editor and configure your
 database connection and github oauth details as indicated by the sample
 config.
 
@@ -61,43 +61,38 @@ inside the `build` namespace.
 The following two tasks work the same wether they are invoked in the
 `development` or in the `production` environment.
 
-    rake build:js     # Compile coffee in 'public/app' to js in 'public/js'
-    rake build:watch  # Continuously compile .coffee in 'public/app' to .js in 'public/js/app'
-    rake build:all    # Same as running 'build:lib' followed by 'build:app'
+    rake build:compile  # Compile coffee in 'app' to js in 'public/js'
+    rake build:watch    # Continuously compile .coffee in 'public/app' to .js in 'public/js/app'
 
-The next tasks work differently depending on the `RACK_ENV` they are invoked in.
+The next task works differently based on the `RACK_ENV` it is invoked in.
 Since the order in which javascript files are referenced from within an
-html page is significant, we need to provide the build tasks with enough
+html page is significant, we need to provide the `build` task with enough
 information to be able to reference the javascript files in the correct
 order.
 
-The [public/app.json](https://github.com/snusnu/contriburator/blob/master/public/app.json)
+The [build.yml](https://github.com/snusnu/contriburator/blob/master/build.yml)
 file contains a simple structure that defines arrays of names for both
-the application's `coffeescript` files at [public/app](https://github.com/snusnu/contriburator/tree/master/public/app) and `javascript` libs at [public/js/lib](https://github.com/snusnu/contriburator/tree/master/public/js/lib).
-Note that the names are given without their file extensions. This is because
-the build system will use these names for both `.coffee` and `.js` files.
+the application's [coffeescript files](https://github.com/snusnu/contriburator/tree/master/app) and [javascript libs](https://github.com/snusnu/contriburator/tree/master/public/js/lib).
 
 ### development environment
 
-    rake build:app     # Compile 'public/app/*.coffee' to 'public/js/app/*.js'
-    rake build:lib     # This is a no-op in the development environment
+    rake build  # Compile coffeescript files to javascript files
 
 ### production environment
 
-    rake build:app     # Compile, combine and minify 'public/app/*.coffee' to 'public/js/app-min.js'
-    rake build:lib     # Combine and minify 'public/js/lib/*.js' to 'public/js/lib-min.js'
+    rake build  # Compile coffeescripts (also combine and minify in production)
 
 ## Serving the javascript files in different environments
 
-Depending on the `RACK_ENV` you used to start your server, the
+Depending on the `RACK_ENV` that was used to start the server, the
 application will either serve minified or regular javascript files.
 
-Just like the build tasks, the application uses the [public/app.json](https://github.com/snusnu/contriburator/blob/master/public/app.json) file to figure out the correct order in which to reference the
+Just like the `build` task, the application uses the [build.yml](https://github.com/snusnu/contriburator/blob/master/build.yml) file to figure out the correct order in which to reference the
 javascript files from within the html.
 
 ### development environment
 
-All regular javascript files (compiled from the [coffescripts](https://github.com/snusnu/contriburator/tree/master/public/app)) will be
+All regular javascript files (compiled from the [coffescripts](https://github.com/snusnu/contriburator/tree/master/app)) will be
 referenced from `<script>` tags within the bottom of [public/app.html](https://github.com/snusnu/contriburator/blob/master/public/app.html).
 
 ### production environment
@@ -105,5 +100,5 @@ referenced from `<script>` tags within the bottom of [public/app.html](https://g
 Only the minified javascript (`public/js/lib-min.js` and `public/js/app-min.js`)
 files will be referenced from `<script>` tags within [public/app.html](https://github.com/snusnu/contriburator/blob/master/public/app.html).
 
-When the server starts up, the `build:all` task will be invoked once, to
+When the server starts up, the `build` task gets invoked once, in order to
 make sure that the most recent minified javascript sources are available.
