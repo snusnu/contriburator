@@ -122,8 +122,9 @@ class Brewery
         @pattern    = @source.join(File.join('**', "*.{#{@extensions.join(',')}}"))
         @templates  = {}
         Dir.glob(@pattern).sort.each do |path|
-          name = Pathname(path).relative_path_from(@source)
-          @templates[name] = File.read(path)
+          relative_path = Pathname(path).relative_path_from(@source)
+          template_name = relative_path.to_s.sub(relative_path.extname, '')
+          @templates[template_name] = File.read(path)
         end
       end
 
