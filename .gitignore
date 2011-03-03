@@ -3,7 +3,6 @@ Gemfile.lock
 tmp
 log
 
-build.yml
 service.yml
 
 public/js/app/*.js

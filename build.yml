@@ -1,0 +1,45 @@
+# Commented lines represent the defaults
+# and can be changed or removed entirely.
+
+# public_dir: public
+
+templates:
+
+  - source: app/templates
+    extensions:
+      - html
+      - ms
+
+bundles: # order matters
+
+  - compress:
+      source: js/lib
+      # target: js/lib-min.js
+      environments:
+        - production
+
+    includes: # order matters
+      - json2.js
+      - underscore.js
+      - backbone.js
+      - handlebars-0.9.0.pre.4.js
+
+  - compile:
+      source: app
+      target: js/app
+      # bare: true
+
+    compress:
+      source: js/app
+      # target: js/app-min.js
+      environments:
+        - production
+
+    includes: # order matters
+      - app.js
+      - utils.js
+
+  - compile:
+      source: spec/app
+      target: spec/js
+      # bare: true
