@@ -48,14 +48,12 @@ module Contriburator
     end
 
     not_found do
+      # TODO handle this differently
       File.read(Config.public_dir.join('404.html'))
     end
 
     get '/' do
-      erb File.read(Config.public_dir.join('app.html')), :locals => {
-        :templates           => Brewery.templates,
-        :javascript_includes => Brewery.includes
-      }
+      erb File.read(Config.public_dir.join('app.html'))
     end
 
     get '/auth/github/callback' do

@@ -57,9 +57,7 @@ class Brewery
     @compilations = @config.compilations
     @compressions = @config.compressions(@env)
     @includes     = @config.includes(@env)
-    @templates    = @config.templates.map do |template|
-      Dir.glob(template.pattern).sort.map { |name| File.read(name) }
-    end.flatten!
+    @templates    = @config.templates
   end
 
   def compile
@@ -93,9 +91,12 @@ class Brewery
       @file_name    = file_name
       hash          = YAML.load(File.open(@root.join(@file_name)))
       @public_dir   = @root.join(hash['public_dir'] || DEFAULT_PUBLIC_DIR)
-      @templates    = hash['templates'].map { |template| Template.new(@root, @public_dir, template) }
-      @bundles      = hash['bundles'  ].map { |bundle  |   Bundle.new(@root, @public_dir, bundle  ) }
+      @bundles      = hash['bundles'  ].map { |bundle  | Bundle.new(@root, @public_dir, bundle) }
       @compilations = @bundles.select { |bundle| bundle.compilation? }
+      @templates    = {}
+      hash['templates'].each do |template|
+        @templates.merge!(TemplateRoot.new(@root, template).templates)
+      end
     end
 
     def includes(environment)
@@ -106,20 +107,24 @@ class Brewery
       @bundles.select { |bundle| bundle.compress?(environment) }
     end
 
-    class Template
+    class TemplateRoot
 
       DEFAULT_EXTENSIONS = %w[ html ]
 
-      attr_reader :public_dir
       attr_reader :source
       attr_reader :extensions
       attr_reader :pattern
+      attr_reader :templates
 
-      def initialize(root, public_dir, template)
-        @public_dir = public_dir
+      def initialize(root, template)
         @source     = root.join(template['source'])
         @extensions = template['extensions'] || DEFAULT_EXTENSIONS
         @pattern    = @source.join(File.join('**', "*.{#{@extensions.join(',')}}"))
+        @templates  = {}
+        Dir.glob(@pattern).sort.each do |path|
+          name = Pathname(path).relative_path_from(@source)
+          @templates[name] = File.read(path)
+        end
       end
 
     end # class Template
