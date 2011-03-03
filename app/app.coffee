@@ -1,7 +1,7 @@
 Contriburator =
 
-	Models:      {}
-	Views:       {}
+	Models: {}
+	Views:  {}
 
 	Controllers:
 
