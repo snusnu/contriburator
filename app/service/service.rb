@@ -27,22 +27,13 @@ module Contriburator
 
     helpers do
 
-      def authenticate_params(credentials)
-        authenticate(credentials[:login], credentials[:token])
-      end
-
-      def authenticate_session(login)
-        authenticate(login, session[:token])
-      end
-
       def authenticate(login, token)
-        user = Persistence::User.first(:login => login)
-        halt 403 unless user && authorized?(user, token)
-        user
+        halt 403 unless authorized?(token)
+        Persistence::User.first(:login => login)
       end
 
-      def authorized?(user, token)
-        user.token == token
+      def authorized?(token)
+        session[:token] == token
       end
 
     end
@@ -57,12 +48,29 @@ module Contriburator
     end
 
     get '/auth/github/callback' do
-      login = request.env['omniauth.auth']['user_info']['nickname']
-      user = Persistence::Contributor.first_or_create(:login => login)
+      auth = request.env['omniauth.auth']
+      nick = auth && auth['user_info']['nickname']
+      return 500 unless nick
 
-      session[:token] = user.token
+      user = Persistence::Contributor.first_or_create(
+        {
+          :github   => nick
+        },
+        {
+          :email    => info['user_info']['email'],
+          :name     => info['user_info']['name' ],
+          :company  => info['extra']['user_hash']['company' ],
+          :location => info['extra']['user_hash']['location'],
+          :homepage => info['extra']['user_hash']['blog'    ]
+        }
+      )
 
-      { :login => login }.to_json
+      session[:token] = info['credentials']['token']
+
+      {
+        :user => user.attributes,
+        :token => session[:token]
+      }.to_json
     end
 
   end # class Server
