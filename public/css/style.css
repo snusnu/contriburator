@@ -309,6 +309,47 @@ header #sync_state {
 }
 
 
+/* Page Content Dialogue
+-------------------------------------------------------------------------------*/
+
+.page-content {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+  padding: 0px 0 50px 0;
+  border-bottom: 1px solid #CCC;
+}
+
+.page-content h1 {
+  color: #000;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.page-content select { float: left;  }
+.page-content input { float: left; background: rgba(255,255,255, 0.6); width: 250px; }
+.page-content input:hover { background :#fff; }
+.page-content input:focus { background :#fff; }
+.page-content input.error { border: 2px solid red; }
+.page-content label { display: block; float: left; width: 300px; position: relative; font-size: 16px; font-style: italic; }
+.page-content label span { position: absolute; top: 20px; left: 0px; font-family: Helvetica; color: #888; font-size: 11px; font-style: normal; }
+.page-content div { padding: 20px 0; overflow: auto }
+.page-content input[type=submit] { background: #A2C44E; color: white; border: none; }
+
+/* Messages for input fields */
+.page-content .input-message { float: left; padding: 0 20px; margin: 0;
+  font-family: Helvetica;
+  font-size: 12px;
+}
+
+.page-content #registration_error_message {
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+  color: darkred;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+
 /* Startpage
 -------------------------------------------------------------------------------*/
 
