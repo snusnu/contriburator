@@ -49,9 +49,18 @@
       </div>
       <div id="login_state">
         <div id="login">
+        <% if current_user %>
+          <a href="http://github.com/<%= current_user.github %>">
+            <img src="http://www.gravatar.com/avatar/<%= profile_image_hash(current_user.email) %>?s=30&d=mm" alt="Gravatar" class="profile-avatar" />
+            <span class="name">
+              <%= current_user.name || current_user.github %> &middot; <a href="/signout">Sign out</a>
+            </span>
+          </a>
+        <% else %>
           <div class="signup">
             <a href="/auth/github" class="toggle-signup">Login via Github</a>
           </div>
+        <% end %>
         </div>
       </div>
     </header>

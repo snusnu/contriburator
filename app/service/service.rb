@@ -1,4 +1,5 @@
 require 'pathname'
+require 'digest/md5'
 
 require 'json'
 require 'sinatra/base'
@@ -27,13 +28,23 @@ module Contriburator
 
     helpers do
 
+      def current_user
+        id = session[:user] && session[:user][:id]
+        return unless id
+        Persistence::Contributor.get(id)
+      end
+
       def authenticate(login, token)
         halt 403 unless authorized?(token)
-        Persistence::User.first(:login => login)
+        Persistence::Contributor.first(:login => login)
       end
 
       def authorized?(token)
         session[:token] == token
+      end
+
+      def profile_image_hash(email)
+        email ? Digest::MD5.hexdigest(email) : '00000000000000000000000000000000'
       end
 
     end
@@ -57,20 +68,25 @@ module Contriburator
           :github   => nick
         },
         {
-          :email    => info['user_info']['email'],
-          :name     => info['user_info']['name' ],
-          :company  => info['extra']['user_hash']['company' ],
-          :location => info['extra']['user_hash']['location'],
-          :homepage => info['extra']['user_hash']['blog'    ]
+          :email    => auth['user_info']['email'],
+          :name     => auth['user_info']['name' ],
+          :company  => auth['extra']['user_hash']['company' ],
+          :location => auth['extra']['user_hash']['location'],
+          :homepage => auth['extra']['user_hash']['blog'    ]
         }
       )
 
-      session[:token] = info['credentials']['token']
+      session[:user] = {
+        :id    => user.id,
+        :token => auth['credentials']['token']
+      }
 
-      {
-        :user => user.attributes,
-        :token => session[:token]
-      }.to_json
+      redirect '/'
+    end
+
+    get '/signout' do
+      session[:user] = nil
+      redirect '/'
     end
 
   end # class Server
