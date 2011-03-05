@@ -55,7 +55,7 @@ module Contriburator
     end
 
     get '/' do
-      erb File.read(Config.public_dir.join('app.html'))
+      erb File.read(Config.root.join('app/app.html'))
     end
 
     get '/auth/github/callback' do
