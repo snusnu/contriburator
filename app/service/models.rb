@@ -56,7 +56,7 @@ module Contriburator
       property :github,     String, :unique => true
       property :irc,        String
 
-      property :created_at, ZonedTime
+      property :created_at, DateTime
 
       has n, :contributions
 
@@ -81,7 +81,7 @@ module Contriburator
           'Contriburator::Persistence::Project',
           :key => true
 
-        property :created_at,  ZonedTime
+        property :created_at,  DateTime
 
         is :localizable do
           property :description, Text
@@ -116,7 +116,7 @@ module Contriburator
       property :issues,        URI
       property :mailing_list,  URI
       property :twitter,       String, :length => (0..255)
-      property :created_at,    ZonedTime
+      property :created_at,    DateTime
 
       is :localizable do
         property :description,     Text
@@ -217,7 +217,7 @@ module Contriburator
 
       property :amount,     Integer, :min => 0
       property :anonymous,  Boolean, :default => true
-      property :created_at, ZonedTime
+      property :created_at, DateTime
 
       belongs_to :contributor
       belongs_to :kind, :child_key => [:kind], :parent_key => [:name]
@@ -255,8 +255,8 @@ module Contriburator
 
       property :id,          Serial
       property :goal,        Integer,   :required => true
-      property :start_date,  ZonedTime, :required => true
-      property :stop_date,   ZonedTime, :required => true
+      property :start_date,  DateTime, :required => true
+      property :stop_date,   DateTime, :required => true
 
       is :localizable do
         property :description, Text, :required => true
