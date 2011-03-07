@@ -34,4 +34,4 @@ $.ajaxSetup(cache: false)
 $ ->
 	Contriburator.start()
 	Backbone.history.start()
-	null
+	this
