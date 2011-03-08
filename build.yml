@@ -23,6 +23,7 @@ bundles: # order matters
       - underscore.js
       - backbone.js
       - handlebars-0.9.0.pre.4.js
+      - github.js
 
   - compile:
       source: app
