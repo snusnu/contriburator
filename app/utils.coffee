@@ -50,5 +50,5 @@ Contriburator.Utils =
         templates[name] = Handlebars.compile($(el).html())
         null
 
-     templates
+    templates
 
