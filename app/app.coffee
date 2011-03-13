@@ -15,11 +15,11 @@ Contriburator =
         '!/:user': 'profile'
 
       home: ->
-        $('#main').html(@templates['home'])
+        $('#main').html(@templates.home)
         this
 
       profile: ->
-        $('#main').html(@templates['profile'](user))
+        $('#main').html(@templates.profile(user))
         this
 
       run: ->
