@@ -10,8 +10,6 @@ Contriburator =
       initialize: ->
         @templates = Contriburator.Utils.loadTemplates()
 
-      templates: {}
-
       routes:
         '':        'home'
         '!/:user': 'profile'
