@@ -81,7 +81,7 @@ module Contriburator
         :token => auth['credentials']['token']
       }
 
-      redirect '/'
+      redirect "/#!/#{nick}"
     end
 
     get '/signout' do

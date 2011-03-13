@@ -6,6 +6,7 @@ require 'dm-timestamps'
 require 'dm-transactions'
 require 'dm-types'
 require 'dm-zone-types'
+require 'dm-serializer'
 
 require 'dm-is-localizable'
 require 'dm-accepts_nested_attributes'

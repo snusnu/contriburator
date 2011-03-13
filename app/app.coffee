@@ -14,12 +14,18 @@ Contriburator =
 
       routes:
         '':        'home'
+        '!/:user': 'profile'
 
       home: ->
         $('#main').html(@templates['home'])
         this
 
+      profile: ->
+        $('#main').html(@templates['profile'](user))
+        this
+
       run: ->
+        this
 
   start: ->
     Backbone.history  = new Backbone.History
