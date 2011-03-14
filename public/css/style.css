@@ -263,6 +263,50 @@ textarea  {  -webkit-transition: background, background-color, border-color, col
 img       {  -webkit-transition: opacity 0.35s linear; }
 
 
+/* Form input */
+
+input {
+  position:relative;
+  margin:0 auto;
+  padding: 4px 10px;
+  font-size:14px;
+  color: #666;
+  border: none;
+  background: #E1E2DE;
+}
+
+input[type=submit] {
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+  font-weight: lighter;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+input[type=submit]:hover {
+  opacity: 1.0;
+}
+
+textarea {
+  position:relative;
+  width:100%;
+  height:250px;
+  margin:0 auto;
+  padding:5px;
+  font-size:12px;
+  color: #666;
+  border:1px solid transparent;
+  resize:none;
+  background-color:rgba(255,255,255,0.5);
+}
+
+input:hover, textarea:hover {
+
+}
+
+input:focus, textarea:focus {
+
+}
+
 
 /* body > #container
 -------------------------------------------------------------------------------*/
