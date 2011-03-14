@@ -68,42 +68,6 @@ module Contriburator
 
     class Project
 
-      class Relationship
-
-        include DataMapper::Resource
-
-        storage_names[:default] = 'project_relationships'
-
-        belongs_to :client,
-          'Contriburator::Persistence::Project',
-          :key => true
-
-        belongs_to :dependency,
-          'Contriburator::Persistence::Project',
-          :key => true
-
-        property :created_at,  DateTime
-
-        is :localizable do
-          property :description, Text
-        end
-
-      end
-
-      class Contribution
-
-        include DataMapper::Resource
-
-        storage_names[:default] = 'project_contributions'
-
-        belongs_to :contribution,
-          'Contriburator::Persistence::Contribution',
-          :key => true
-
-        belongs_to :project
-
-      end
-
       include DataMapper::Resource
 
       storage_names[:default] = 'projects'
@@ -158,23 +122,45 @@ module Contriburator
         @name ||= github.sub('http://github.com/', '')
       end
 
-    end # Project
+      class Relationship
 
-    class Feature
+        include DataMapper::Resource
+
+        storage_names[:default] = 'project_relationships'
+
+        belongs_to :client,
+          'Contriburator::Persistence::Project',
+          :key => true
+
+        belongs_to :dependency,
+          'Contriburator::Persistence::Project',
+          :key => true
+
+        property :created_at,  DateTime
+
+        is :localizable do
+          property :description, Text
+        end
+
+      end
 
       class Contribution
 
         include DataMapper::Resource
 
-        storage_names[:default] = 'feature_contributions'
+        storage_names[:default] = 'project_contributions'
 
         belongs_to :contribution,
           'Contriburator::Persistence::Contribution',
           :key => true
 
-        belongs_to :feature
+        belongs_to :project
 
       end
+
+    end # Project
+
+    class Feature
 
       include DataMapper::Resource
 
@@ -194,23 +180,23 @@ module Contriburator
         property :description, Text
       end
 
-    end
-
-    class Contribution
-
-      class Kind
+      class Contribution
 
         include DataMapper::Resource
 
-        storage_names[:default] = 'contribution_kinds'
+        storage_names[:default] = 'feature_contributions'
 
-        property :name, String, :key => true
+        belongs_to :contribution,
+          'Contriburator::Persistence::Contribution',
+          :key => true
 
-        is :localizable do
-          property :description, Text
-        end
+        belongs_to :feature
 
       end
+
+    end
+
+    class Contribution
 
       include DataMapper::Resource
 
@@ -235,20 +221,23 @@ module Contriburator
       has 0..1, :feature,
         :through => :feature_contribution
 
-    end # Contribution
-
-    class Bounty
-
-      class Status
+      class Kind
 
         include DataMapper::Resource
 
-        storage_names[:default] = 'bounty_states'
+        storage_names[:default] = 'contribution_kinds'
 
-        property :name,        String, :key      => true, :length => 20
-        property :description, Text,   :required => true
+        property :name, String, :key => true
 
-      end # class Status
+        is :localizable do
+          property :description, Text
+        end
+
+      end
+
+    end # Contribution
+
+    class Bounty
 
       include DataMapper::Resource
 
@@ -264,6 +253,17 @@ module Contriburator
       end
 
       belongs_to :status, :child_key => [ :name ]
+
+      class Status
+
+        include DataMapper::Resource
+
+        storage_names[:default] = 'bounty_states'
+
+        property :name,        String, :key      => true, :length => 20
+        property :description, Text,   :required => true
+
+      end # class Status
 
     end # class Bounty
 
